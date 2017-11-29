@@ -18,6 +18,7 @@ def knightGraph(bdSize):
     ktGraph = Graph()
     for row in range(bdSize):
         for col in range(bdSize):
+            #import pdb; pdb.set_trace()
             nodeId = posToNodeId(row, col, bdSize)
             newPositions = genLegalMoves(row, col, bdSize)
             for e in newPositions:
@@ -86,24 +87,31 @@ def knightTour(n, path, u, limit):
     return path 
 
 def dfs(start):
-
     start.setColor('gray')
     print "Visted => ", start.getId()
     for nbr in start.getConnections():
         if nbr.getColor() == 'white':                
             dfs(nbr)
 
-#g = knightGraph(3) 
-g = allMoves(3)
+g = knightGraph(8) 
+#g = allMoves(3)
 path = []
 limit = 6
+print 'vertices=> ', g.getVertices()
+#print 'edges=> ', g.iterkeys()
 
-trace = knightTour(0, path, g.getVertex(0), 4)
+#trace = knightTour(0, path, g.getVertex(4), 63)
 
-for p in trace:
-    print p.getId()
+#g2 =  g.getVertex(2)
+#for g in g2.getConnections():
+#    print "=" * 10
+#    print g.getId()
+#    print "=" * 10
 
+#for p in trace:
+#    print p.getId()
+    #print p.getConnections()
 
-#print dfs( g.getVertex(0))
+print "Number of Nodes visited is => ", dfs( g.getVertex(0))
     
 
